@@ -131,4 +131,44 @@ docker stop e0fa1c0d8cb9
 #stop can allow safe termination (within the grace period) while kill terminates immediately. A container that is in the created state or stopped can be removed with docker rm
 docker kill e0fa1c0d8cb9
 
+#docker run redis
+Unable to find image 'redis:latest' locally
+latest: Pulling from library/redis
+f03b40093957: Pull complete 
+8db26c5e8435: Pull complete 
+37e84c7a626f: Pull complete 
+806c192e0375: Pull complete 
+08769906aa59: Pull complete 
+635073d8ccd5: Pull complete 
+Digest: sha256:f9724694a0b97288d2255ff2b69642dfba7f34c8e41aaf0a59d33d10d8a42687
+Status: Downloaded newer image for redis:latest
+1:C 07 Jun 2023 15:24:31.070 # oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo
+1:C 07 Jun 2023 15:24:31.070 # Redis version=7.0.11, bits=64, commit=00000000, modified=0, pid=1, just started
+1:C 07 Jun 2023 15:24:31.070 # Warning: no config file specified, using the default config. In order to specify a config file use redis-server /path/to/redis.conf
+1:M 07 Jun 2023 15:24:31.072 * monotonic clock: POSIX clock_gettime
+1:M 07 Jun 2023 15:24:31.074 * Running mode=standalone, port=6379.
+1:M 07 Jun 2023 15:24:31.074 # WARNING: The TCP backlog setting of 511 cannot be enforced because /proc/sys/net/core/somaxconn is set to the lower value of 128.
+1:M 07 Jun 2023 15:24:31.074 # Server initialized
+1:M 07 Jun 2023 15:24:31.074 * Ready to accept connections
 
+# run redis cli in container "docker exec -it containerID COMMAND"
+# FLAG '-it' == '-i' + '-t' 
+# '-i' -> STDIN output to terminal interface, '-t' showing a better format
+docker ps
+CONTAINER ID        IMAGE               COMMAND                  CREATED              STATUS              PORTS               NAMES
+35aae66e794a        redis               "docker-entrypoint.s…"   About a minute ago   Up About a minute   6379/tcp            angry_galois
+
+docker exec -it 35aae66e794a redis-cli
+127.0.0.1:6379> set myvalue 5
+OK
+127.0.0.1:6379> get myvalue
+"5"
+127.0.0.1:6379> 
+
+docker exec -it 35aae66e794a sh
+# ls
+# cd /
+# ls
+bin   dev   lib    mnt   root  srv  usr
+boot  etc   lib64  opt   run   sys  var
+data  home  media  proc  sbin  tmp
