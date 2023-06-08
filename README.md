@@ -1,2 +1,2 @@
 # docker-sheet
-docker command lists/explanations
+docker related tutorials/projects
