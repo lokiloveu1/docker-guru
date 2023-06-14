@@ -1,0 +1,11 @@
+version: '3'
+services:
+  redis-server:
+  #use the image redis to build svc
+    image: 'redis'
+  node-app:
+  #build node app using the file in "." path
+    build: .
+    ports:
+    #4001 is port on our local machine, 8081 is port on the container
+      - "4001:8081"
